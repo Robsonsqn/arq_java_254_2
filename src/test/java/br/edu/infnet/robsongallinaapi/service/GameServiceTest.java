@@ -27,7 +27,7 @@ class GameServiceTest {
         Game savedGame = gameService.save(newGame);
 
         assertNotNull(savedGame);
-        assertEquals(1L, savedGame.getId()); // The first ID should be 1
+        assertEquals(1L, savedGame.getId());
     }
 
     @Test
@@ -40,7 +40,7 @@ class GameServiceTest {
         Game updatedGame = gameService.save(savedGame);
         Optional<Game> foundGame = gameService.findById(savedGame.getId());
 
-        assertEquals(1, gameService.findAll().size()); // List size should remain 1
+        assertEquals(1, gameService.findAll().size());
         assertEquals("Cyberpunk 2077 Phantom Liberty", updatedGame.getTitle());
         assertTrue(foundGame.isPresent());
         assertEquals("Cyberpunk 2077 Phantom Liberty", foundGame.get().getTitle());
@@ -74,7 +74,7 @@ class GameServiceTest {
 
     @Test
     void findById_shouldReturnEmptyWhenNotExists() {
-        Optional<Game> foundGame = gameService.findById(99L); // An ID that doesn't exist
+        Optional<Game> foundGame = gameService.findById(99L);
 
         assertFalse(foundGame.isPresent());
     }

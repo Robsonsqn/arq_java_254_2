@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/games") // API endpoint in English
+@RequestMapping("/games")
 public class GamesController {
 
     private final GameService gameService;

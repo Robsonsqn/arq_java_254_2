@@ -39,7 +39,7 @@ class GameControllerTest {
 
         mockMvc.perform(get("/games")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk()) // Expect HTTP 200 OK
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(2))
                 .andExpect(jsonPath("$[0].title").value("Stardew Valley"))
                 .andExpect(jsonPath("$[0].platform").value("PC"))

@@ -28,7 +28,7 @@ public class GamesLoader implements ApplicationRunner {
         System.out.println(">>> Loading initial game data...");
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(
-                Objects.requireNonNull(this.getClass().getResourceAsStream("/jogsos.txt")), StandardCharsets.UTF_8))) {
+                Objects.requireNonNull(this.getClass().getResourceAsStream("/jogos.txt")), StandardCharsets.UTF_8))) {
 
             String line;
             while ((line = reader.readLine()) != null) {
