@@ -3,6 +3,7 @@ package br.edu.infnet.robsongallinaapi.controller;
 import br.edu.infnet.robsongallinaapi.controller.GamesController;
 import br.edu.infnet.robsongallinaapi.model.BoardGame;
 import br.edu.infnet.robsongallinaapi.model.Game;
+import br.edu.infnet.robsongallinaapi.model.Publisher;
 import br.edu.infnet.robsongallinaapi.model.VideoGame;
 import br.edu.infnet.robsongallinaapi.service.GameService;
 import org.junit.jupiter.api.Test;
@@ -31,8 +32,11 @@ class GameControllerTest {
 
     @Test
     void findAll_shouldReturnListOfGamesAndOkStatus() throws Exception {
-        Game videoGame = new VideoGame(1L, "Stardew Valley", "Simulation", 2016, true, true, "PC", "ConcernedApe");
-        Game boardGame = new BoardGame(2L, "Catan", "Strategy", 1995, true, true, 3, 4, "Devir");
+        Publisher publisherVg = new Publisher(1L, "publisher1", "Brazil");
+        Publisher publisherBg = new Publisher(2L, "publisher2", "Brazil");
+
+        Game videoGame = new VideoGame(1L, "Stardew Valley", "Simulation", 2016, true, true, "PC", "ConcernedApe", publisherVg);
+        Game boardGame = new BoardGame(2L, "Catan", "Strategy", 1995, true, true, 3, 4, publisherBg);
         List<Game> gamesList = Arrays.asList(videoGame, boardGame);
 
         when(gameService.findAll()).thenReturn(gamesList);

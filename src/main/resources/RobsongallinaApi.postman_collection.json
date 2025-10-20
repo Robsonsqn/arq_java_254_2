@@ -23,6 +23,151 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Buscar Por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/games/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"games",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Jogo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"card_game\",  \r\n    \"title\": \"jogosxpto\",\r\n    \"genre\": \"card\",\r\n    \"releaseYear\": 2022,\r\n    \"owned\": false,\r\n    \"played\": false,\r\n    \"cardCount\": 250,\r\n    \"gameType\": \"Deck-building\",\r\n    \"publisher\": {\r\n        \"id\": 9,\r\n        \"name\": \"Rio Grande Games\",\r\n        \"country\": \"USA\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/games",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Jogo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"video_game\",\r\n    \"id\": 2,\r\n    \"title\": \"Stardew Valley\",\r\n    \"genre\": \"Simulation\",\r\n    \"releaseYear\": 2016,\r\n    \"owned\": true,\r\n    \"played\": false,\r\n    \"platform\": \"Mobile\",\r\n    \"developer\": \"ConcernedApe\",\r\n    \"publisher\": {\r\n        \"id\": 2,\r\n        \"name\": \"ConcernedApe\",\r\n        \"country\": \"USA\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/games/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"games",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Jogo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"card_game\",  \r\n    \"title\": \"jogosxpto\",\r\n    \"genre\": \"card\",\r\n    \"releaseYear\": 2022,\r\n    \"owned\": false,\r\n    \"played\": false,\r\n    \"cardCount\": 250,\r\n    \"gameType\": \"Deck-building\",\r\n    \"publisher\": {\r\n        \"id\": 9,\r\n        \"name\": \"Rio Grande Games\",\r\n        \"country\": \"USA\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/games/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"games",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "marcar jogo jogado",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/games/:id/toggle-played",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"games",
+						":id",
+						"toggle-played"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
