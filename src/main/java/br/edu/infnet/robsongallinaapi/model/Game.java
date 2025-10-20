@@ -2,10 +2,13 @@ package br.edu.infnet.robsongallinaapi.model;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,11 +23,18 @@ import lombok.NoArgsConstructor;
         @JsonSubTypes.Type(value = CardGame.class, name = "card_game")
 })
 public abstract class Game {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
     private String genre;
     private int releaseYear;
     private boolean owned;
     private boolean played;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 }
