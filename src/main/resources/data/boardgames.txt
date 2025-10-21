@@ -1,0 +1,3 @@
+Catan,Strategy,1995,true,true,KOSMOS,Germany,3,4
+Ticket to Ride,Family,2004,false,true,Days of Wonder,USA,2,5
+7 Wonders,Strategy,2010,true,false,Repos Production,Belgium,2,7

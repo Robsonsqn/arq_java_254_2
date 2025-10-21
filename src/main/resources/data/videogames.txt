@@ -1,0 +1,3 @@
+The Witcher 3: Wild Hunt,RPG,2015,true,true,CD Projekt Red,Poland,PC,CD Projekt Red
+Stardew Valley,Simulation,2016,true,true,ConcernedApe,USA,PC,ConcernedApe
+Elden Ring,Action RPG,2022,true,true,FromSoftware,Japan,PC,FromSoftware

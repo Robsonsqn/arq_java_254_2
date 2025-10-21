@@ -1,0 +1,3 @@
+Magic: The Gathering,Collectible,1993,true,false,Wizards of the Coast,USA,20000,Collectible
+UNO,Family,1971,true,true,Mattel,USA,108,Matching
+Dominion,Deck-building,2008,true,false,Rio Grande Games,USA,500,Deck-building

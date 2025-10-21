@@ -11,8 +11,8 @@ public class VideoGame extends Game {
     private String developer;
 
     public VideoGame(Long id, String title, String genre, int releaseYear, boolean owned, boolean played,
-                     String platform, String developer) {
-        super(id, title, genre, releaseYear, owned, played);
+                     String platform, String developer, Publisher publisher) {
+        super(id, title, genre, releaseYear, owned, played, publisher);
         this.platform = platform;
         this.developer = developer;
     }

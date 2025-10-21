@@ -9,13 +9,11 @@ public class BoardGame extends Game {
 
     private int minPlayers;
     private int maxPlayers;
-    private String publisher;
 
     public BoardGame(Long id, String title, String genre, int releaseYear, boolean owned, boolean played,
-                     int minPlayers, int maxPlayers, String publisher) {
-        super(id, title, genre, releaseYear, owned, played);
+                     int minPlayers, int maxPlayers, Publisher publisher) {
+        super(id, title, genre, releaseYear, owned, played, publisher);
         this.minPlayers = minPlayers;
         this.maxPlayers = maxPlayers;
-        this.publisher = publisher;
     }
 }
