@@ -1,44 +1,63 @@
 package br.edu.infnet.robsongallinaapi.service;
 
 import br.edu.infnet.robsongallinaapi.model.Publisher;
+import br.edu.infnet.robsongallinaapi.repository.PublisherRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
-public class PublisherServiceTest {
+@ExtendWith(MockitoExtension.class)
+class PublisherServiceTest {
+
+    @Mock
+    private PublisherRepository publisherRepository;
+
+    @InjectMocks
+    private PublisherService publisherService;
 
     @Test
-    void save_assignsIdAndCachesCaseInsensitive() {
-        PublisherService service = new PublisherService();
+    void findOrCreate_returnsExistingWhenFound() {
+        Publisher existing = new Publisher(1L, "Editora A", "BR");
+        when(publisherRepository.findByNameIgnoreCase("editora a")).thenReturn(Optional.of(existing));
 
-        Publisher publisher = new Publisher(null, "Editora A", "BR");
-        Publisher saved = service.save(publisher);
+        Publisher result = publisherService.findOrCreateByNameAndCountry("editora a", "BR");
 
-        assertNotNull(saved.getId(), "Id deve ser atribuído ao salvar");
-        assertSame(saved, service.findById(saved.getId()).orElse(null), "Deve retornar a mesma instância ao buscar por id");
-
-        Publisher foundByName = service.findOrCreateByNameAndCountry("editora a", "BR");
-        assertSame(saved, foundByName, "Busca por nome (case-insensitive) deve retornar a instância existente");
+        assertSame(existing, result);
+        verify(publisherRepository).findByNameIgnoreCase("editora a");
+        verifyNoMoreInteractions(publisherRepository);
     }
 
     @Test
-    void findById_notFound_returnsEmpty() {
-        PublisherService service = new PublisherService();
+    void findOrCreate_createsAndSavesWhenNotFound() {
+        when(publisherRepository.findByNameIgnoreCase("Nova Editora")).thenReturn(Optional.empty());
 
-        assertFalse(service.findById(999L).isPresent(), "Busca por id inexistente deve retornar Optional vazio");
-    }
+        when(publisherRepository.save(any(Publisher.class))).thenAnswer(invocation -> {
+            Publisher p = invocation.getArgument(0);
+            p.setId(42L);
+            return p;
+        });
 
-    @Test
-    void findOrCreate_createsNewWhenNotExists() {
-        PublisherService service = new PublisherService();
+        Publisher created = publisherService.findOrCreateByNameAndCountry("Nova Editora", "BR");
 
-        Publisher created = service.findOrCreateByNameAndCountry("Nova Editora", "BR");
-
-        assertNotNull(created.getId(), "Novo publisher deve receber id");
+        assertNotNull(created.getId());
+        assertEquals(42L, created.getId());
         assertEquals("Nova Editora", created.getName());
         assertEquals("BR", created.getCountry());
 
-        Publisher foundAgain = service.findOrCreateByNameAndCountry("nova editora", "BR");
-        assertSame(created, foundAgain, "Chamadas subsequentes por nome devem retornar a mesma instância");
+        ArgumentCaptor<Publisher> captor = ArgumentCaptor.forClass(Publisher.class);
+        verify(publisherRepository).findByNameIgnoreCase("Nova Editora");
+        verify(publisherRepository).save(captor.capture());
+
+        Publisher savedArg = captor.getValue();
+        assertEquals("Nova Editora", savedArg.getName());
+        assertEquals("BR", savedArg.getCountry());
     }
 }
