@@ -1,0 +1,5 @@
+VIDEOGAME,The Witcher 3: Wild Hunt,RPG,2015,true,true,PC,CD Projekt Red
+BOARDGAME,Catan,Strategy,1995,true,true,3,4,Devir
+CARDGAME,Magic: The Gathering,Collectible,1993,true,false,20000,Collectible
+VIDEOGAME,Stardew Valley,Simulation,2016,true,true,PC,ConcernedApe
+BOARDGAME,Ticket to Ride,Family,2004,false,true,2,5,Days of Wonder

@@ -1,0 +1,28 @@
+{
+	"info": {
+		"_postman_id": "1f20d061-6aec-49ca-aef6-9436305d89df",
+		"name": "RobsongallinaApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3513206"
+	},
+	"item": [
+		{
+			"name": "Buscar Todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/games",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"games"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
