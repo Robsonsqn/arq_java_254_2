@@ -1,10 +1,15 @@
 package br.edu.infnet.robsongallinaapi.model;
 
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
+@Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
 public class BoardGame extends Game {
 
     private int minPlayers;

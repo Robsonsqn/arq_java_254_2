@@ -2,10 +2,11 @@ package br.edu.infnet.robsongallinaapi.controller;
 
 import br.edu.infnet.robsongallinaapi.model.Game;
 import br.edu.infnet.robsongallinaapi.service.GameService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -14,13 +15,13 @@ public class GamesController {
 
     private final GameService gameService;
 
-    public GamesController (GameService gameService) {
+    public GamesController(GameService gameService) {
         this.gameService = gameService;
     }
 
     @GetMapping
-    public List<Game> findAll() {
-        return gameService.findAll();
+    public ResponseEntity<List<Game>> findAll() {
+        return ResponseEntity.ok(gameService.findAll());
     }
 
     @GetMapping("/{id}")
@@ -31,24 +32,28 @@ public class GamesController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Game create(@RequestBody Game game) {
-        return gameService.create(game);
+    public ResponseEntity<Game> create(@RequestBody Game game) {
+        Game createdGame = gameService.create(game);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(createdGame.getId()).toUri();
+        return ResponseEntity.created(location).body(createdGame);
     }
 
     @PutMapping("/{id}")
-    public Game update(@PathVariable Long id, @RequestBody Game game) {
-        return gameService.update(id, game);
+    public ResponseEntity<Game> update(@PathVariable Long id, @RequestBody Game game) {
+        Game updatedGame = gameService.update(id, game);
+        return ResponseEntity.ok(updatedGame);
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         gameService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PatchMapping("/{id}/toggle-played")
-    public Game togglePlayedStatus(@PathVariable Long id) {
-        return gameService.togglePlayedStatus(id);
+    public ResponseEntity<Game> togglePlayedStatus(@PathVariable Long id) {
+        Game updatedGame = gameService.togglePlayedStatus(id);
+        return ResponseEntity.ok(updatedGame);
     }
 }
