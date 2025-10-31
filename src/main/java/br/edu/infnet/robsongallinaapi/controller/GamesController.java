@@ -31,6 +31,13 @@ public class GamesController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/title/{title}")
+    public ResponseEntity<Game> findByName(@PathVariable String title) {
+        return gameService.findByTitle(title)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping
     public ResponseEntity<Game> create(@RequestBody Game game) {
         Game createdGame = gameService.create(game);

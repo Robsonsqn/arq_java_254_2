@@ -12,11 +12,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/games",
+					"raw": "{{baseURL}}/games",
 					"host": [
-						"localhost"
+						"{{baseURL}}"
 					],
-					"port": "8080",
 					"path": [
 						"games"
 					]
@@ -30,11 +29,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/games/:id",
+					"raw": "{{baseURL}}/games/:id",
 					"host": [
-						"localhost"
+						"{{baseURL}}"
 					],
-					"port": "8080",
 					"path": [
 						"games",
 						":id"
@@ -43,6 +41,31 @@
 						{
 							"key": "id",
 							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar jogo por nome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/games/title/:title",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"games",
+						"title",
+						":title"
+					],
+					"variable": [
+						{
+							"key": "title",
+							"value": "The Witcher 3: Wild Hunt"
 						}
 					]
 				}
@@ -64,11 +87,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/games",
+					"raw": "{{baseURL}}/games",
 					"host": [
-						"localhost"
+						"{{baseURL}}"
 					],
-					"port": "8080",
 					"path": [
 						"games"
 					]
@@ -91,11 +113,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/games/:id",
+					"raw": "{{baseURL}}/games/:id",
 					"host": [
-						"localhost"
+						"{{baseURL}}"
 					],
-					"port": "8080",
 					"path": [
 						"games",
 						":id"
@@ -120,11 +141,10 @@
 					"raw": "{\r\n    \"type\": \"card_game\",  \r\n    \"title\": \"jogosxpto\",\r\n    \"genre\": \"card\",\r\n    \"releaseYear\": 2022,\r\n    \"owned\": false,\r\n    \"played\": false,\r\n    \"cardCount\": 250,\r\n    \"gameType\": \"Deck-building\",\r\n    \"publisher\": {\r\n        \"id\": 9,\r\n        \"name\": \"Rio Grande Games\",\r\n        \"country\": \"USA\"\r\n    }\r\n}"
 				},
 				"url": {
-					"raw": "localhost:8080/games/:id",
+					"raw": "{{baseURL}}/games/:id",
 					"host": [
-						"localhost"
+						"{{baseURL}}"
 					],
-					"port": "8080",
 					"path": [
 						"games",
 						":id"
@@ -149,11 +169,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "localhost:8080/games/:id/toggle-played",
+					"raw": "{{baseURL}}/games/:id/toggle-played",
 					"host": [
-						"localhost"
+						"{{baseURL}}"
 					],
-					"port": "8080",
 					"path": [
 						"games",
 						":id",
@@ -168,6 +187,64 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Adicionar Review",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"reviewerName\": \"aluno4\",\r\n    \"rating\": 3,\r\n    \"comment\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum, augue at tempor venenatis, augue justo aliquam nisl, nec commodo elit libero at odio. Donec lectus ipsum, ultrices ac mollis non, dapibus sed eros. Praesent a lectus dui. Vivamus dui leo, semper quis tellus ut, ornare porttitor ante.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/games/:gameId/review",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"games",
+						":gameId",
+						"review"
+					],
+					"variable": [
+						{
+							"key": "gameId",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Reviews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/review",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"review"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "default"
 		}
 	]
 }

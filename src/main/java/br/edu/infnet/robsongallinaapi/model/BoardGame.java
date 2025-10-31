@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.Collections;
+
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -17,7 +19,7 @@ public class BoardGame extends Game {
 
     public BoardGame(Long id, String title, String genre, int releaseYear, boolean owned, boolean played,
                      int minPlayers, int maxPlayers, Publisher publisher) {
-        super(id, title, genre, releaseYear, owned, played, publisher);
+        super(id, title, genre, releaseYear, owned, played, publisher, Collections.emptyList());
         this.minPlayers = minPlayers;
         this.maxPlayers = maxPlayers;
     }

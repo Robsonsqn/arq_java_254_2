@@ -52,4 +52,8 @@ public class GameService {
 
         return gameRepository.save(game);
     }
+
+    public Optional<Game> findByTitle(String title) {
+        return gameRepository.findByTitle(title);
+    }
 }
