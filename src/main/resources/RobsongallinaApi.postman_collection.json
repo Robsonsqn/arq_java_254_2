@@ -65,7 +65,7 @@
 					"variable": [
 						{
 							"key": "title",
-							"value": "The Witcher 3: Wild Hunt"
+							"value": "a"
 						}
 					]
 				}
@@ -234,6 +234,34 @@
 					],
 					"path": [
 						"review"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar por ano lançamento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/games/releaseYear?start=2010&end=2015",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"games",
+						"releaseYear"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "2010"
+						},
+						{
+							"key": "end",
+							"value": "2015"
+						}
 					]
 				}
 			},

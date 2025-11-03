@@ -32,10 +32,13 @@ public class GamesController {
     }
 
     @GetMapping("/title/{title}")
-    public ResponseEntity<Game> findByName(@PathVariable String title) {
-        return gameService.findByTitle(title)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<List<Game>> findByName(@PathVariable String title) {
+        return ResponseEntity.ok(gameService.findByTitle(title));
+    }
+
+    @GetMapping("/releaseYear")
+    public ResponseEntity<List<Game>> findByYearRange(@RequestParam int start, @RequestParam int end) {
+        return ResponseEntity.ok(gameService.findByDate(start, end));
     }
 
     @PostMapping
