@@ -53,7 +53,11 @@ public class GameService {
         return gameRepository.save(game);
     }
 
-    public Optional<Game> findByTitle(String title) {
-        return gameRepository.findByTitle(title);
+    public List<Game> findByTitle(String title) {
+        return gameRepository.findByTitleContainingIgnoreCaseOrderByReleaseYearDesc(title);
+    }
+
+    public List<Game> findByDate(int startYear, int endYear) {
+        return gameRepository.findByReleaseYearBetweenOrderByTitleAsc(startYear, endYear);
     }
 }
